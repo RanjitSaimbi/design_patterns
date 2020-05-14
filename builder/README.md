@@ -12,11 +12,12 @@ warranty_numbers = ['G42WV7', 'E4CDWQ']
 car1 = TediousCar.new(color, engine, transmission, sound_system, warranty_numbers)
 ```
 
-As my class name implies, constructing this object is a bit tedious. We have to pass in a bunch of arguments, including instantiating three other objects first. A constructor with so many required parameters is a code smell. A new team member reading this code months or years later could have a really tough time teasing apart how this code actually works. And s the codebase grows things could only get worse!
+As my class name implies, constructing this object is a bit tedious. We have to pass in a bunch of arguments, including instantiating three other objects first. A constructor with so many required parameters is a code smell. A new team member reading this code months or years later could have a really tough time teasing apart how this code actually works. And as the codebase grows things could only get worse!
 
 The builder pattern proposes a different way. When constructing an object becomes less simple, let's separate the responsibility of constructing an object away from an object itself. Under this pattern a `Car` object will encapsulate the car itself but the `CarBuilder` object just represents how the `Car` is created. This is aligned with the Single Responsibility Principal. When constructing an object becomes complex enough to be considered itself a concern, we should extract that responsibility to a new class.
 
 Here's our new car. Notice that we are providing a way to construct a car without a builder class, if one really wanted to, but the class is designed with the intention of using a builder class.
+
 ```ruby
 require './car_builder'
 
